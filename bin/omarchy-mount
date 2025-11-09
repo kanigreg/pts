@@ -4,7 +4,8 @@
 
 # Получаем последнюю ссылку на ISO с сайта
 ISO_URL=$(curl -s https://omarchy.org | grep -oP 'https://iso\.omarchy\.org/omarchy-[0-9.]+\.iso' | head -1)
-ISO_FILE="${ISO_URL##*/}"
+mkdir -p ~/.local/share/omarchy/
+ISO_FILE="$HOME/.local/share/omarchy/${ISO_URL##*/}"
 MOUNT_DIR="/media/omarchy_iso"
 
 # Создаем папку для монтирования (требуется sudo)
