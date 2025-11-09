@@ -1,1 +1,1 @@
-PATH=~/.local/share/pts/bin:$PATH
+source "$HOME"/.local/share/pts/defaults/bash/rc
