@@ -1,0 +1,19 @@
+#!/bin/bash
+# Скрипт автоматически получает последнюю ссылку на ISO Omarchy с omarchy.org,
+# загружает его и монтирует в /media/omarchy_iso
+
+# Получаем последнюю ссылку на ISO с сайта
+ISO_URL=$(curl -s https://omarchy.org | grep -oP 'https://iso\.omarchy\.org/omarchy-[0-9.]+\.iso' | head -1)
+ISO_FILE="${ISO_URL##*/}"
+MOUNT_DIR="/media/omarchy_iso"
+
+# Создаем папку для монтирования (требуется sudo)
+sudo mkdir -p "$MOUNT_DIR"
+
+# Скачиваем ISO
+curl -L -o "$ISO_FILE" "$ISO_URL"
+
+# Монтируем ISO в /media
+sudo mount -o loop "$ISO_FILE" "$MOUNT_DIR"
+
+echo "ISO смонтирован в $MOUNT_DIR"
