@@ -1,4 +1,5 @@
 #!/bin/bash
 
+pacman -Syy
 pacman -Syw $(pacman -Slq omarchy)
 repo-add /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/*.pkg.tar.zst
