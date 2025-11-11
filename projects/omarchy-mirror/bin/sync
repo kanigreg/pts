@@ -4,7 +4,9 @@ cat /etc/pacman.d/mirrorlist
 echo '---'
 echo "Enter additional url or empty: "
 read -r url
-echo "Server = $url" >>/etc/pacman.d/mirrorlist
+if [[ -n $url ]]; then
+  echo "Server = $url" >>/etc/pacman.d/mirrorlist
+fi
 
 pacman -Syy
 pacman -Syw $(pacman -Slq omarchy)
