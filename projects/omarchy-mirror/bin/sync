@@ -1,5 +1,11 @@
 #!/bin/bash
 
+cat /etc/pacman.d/mirrorlist
+echo '---'
+echo "Enter additional url or empty: "
+read -r url
+echo "Server = $url" >>/etc/pacman.d/mirrorlist
+
 pacman -Syy
 pacman -Syw $(pacman -Slq omarchy)
 repo-add /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/*.pkg.tar.zst
